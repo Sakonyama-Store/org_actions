@@ -15,7 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout and prepare environment
+        uses: ./.github/workflow/ci_checkout.yml
+        with:
+          project-name: ${{ github.event.repository.name}}
 
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v3

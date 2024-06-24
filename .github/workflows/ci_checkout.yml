@@ -1,0 +1,16 @@
+name: Declarative checkout and prepare environment
+
+on:
+  workflow_call:
+    inputs:
+      project-name:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: Sakonyama-Store/${{inputs.project-name}}
