@@ -6,19 +6,14 @@ on:
       java-version:
         required: true
         type: string
-      docker-image-name:
-        required: true
-        type: string
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout and prepare environment
-        uses: ./.github/workflow/ci_checkout.yml
-        with:
-          project-name: ${{ github.event.repository.name}}
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v3
@@ -44,4 +39,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ inputs.docker-image-name }}:latest
+          tags: surajc7723/${{ github.repository }}:latest
